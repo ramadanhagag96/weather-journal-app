@@ -6,7 +6,7 @@ const feelings = document.getElementById('feelings');
 
 // Create a new date instance dynamically with JS
 const d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
            //add eventlistner to button generate 
 document.getElementById('generate').addEventListener('click', Xgenerate);
 
@@ -32,7 +32,6 @@ async function getweather(Burl, value, Key){
 
       const data1 = await res.json();
       data.temp=data1.main.temp;
-      console.log("getting weather from openweathermap seccussfully");
       return data;
     
   }  catch(error) {
@@ -51,7 +50,6 @@ async function posttoserver(data){
      try { 
          
           const newData = await response.json();
-          console.log("data post to server seccussfully");
           return newData;
   }
   catch (error) {
@@ -64,12 +62,10 @@ async function updateUI(){
   try{
       
       const all1 = await request.json();
-       console.log(all1);
          //update entry values
       document.getElementById('date').innerHTML = 'data is :'+all1.date;
       document.getElementById('temp').innerHTML = 'temperature is :'+all1.temp;
       document.getElementById('content').innerHTML = 'your feelings is :'+all1.content;
-      console.log("UI updated seccussfully");
       
 
   }catch(error){
